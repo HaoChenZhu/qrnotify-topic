@@ -1,0 +1,17 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://user:user@cluster0.gw7id.mongodb.net/qrnotify?retryWrites=true&w=majority
+server:
+  port: 8080
+chen:
+  base_path: /nebrija/qrnotify-topic
+okta:
+  oauth2:
+    issuer: https://dev-86838266.okta.com/oauth2/default
+    client-id: 0oa9aooq57mOsWVPZ5d7
+    client-secret: WLZOlqHkVaGfcqr8exLBGuydvrskAQcrH2az9R6s
+    scope: hao
+logging:
+  level:
+    feign: DEBUG

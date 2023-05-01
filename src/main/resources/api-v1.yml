@@ -1,0 +1,473 @@
+openapi: 3.0.3
+info:
+  title: test
+  description: proyecto back test para qrnotify
+  version: 1.0.0
+servers:
+  - url: '{protocol}://nebrija-tfg/{basePath}'
+    variables:
+      protocol:
+        enum:
+          - http
+          - https
+        default: https
+        description: This value is assigned by the transfer protocol that has to be used
+      basePath:
+        default: /clients/qrnotify
+tags:
+  - name: Test
+    description: Testing service
+  - name: Topic
+    description: Everything about topics
+paths:
+  /test:
+    get:
+      tags:
+        - Test
+      summary: Prueba test
+      description: Prueba test
+      operationId: test
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/general_response'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+  /topic:
+    get:
+      tags:
+        - Topic
+      summary: Get All topics
+      description: Get all topics
+      operationId: getTopics
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+    post:
+      tags:
+        - Topic
+      summary: Create a new Topic
+      description: Create new Topic
+      operationId: postTopic
+      requestBody:
+        description: request body create a new topic
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/topic_request_dto'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+  /topic/{identifier}:
+    get:
+      tags:
+        - Topic
+      summary: Get topic
+      description: Get topic by id
+      operationId: getTopicById
+      parameters:
+        -   name: identifier
+            in: path
+            description: Topic identifier
+            required: true
+            style: simple
+            explode: false
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+    put:
+      tags:
+        - Topic
+      summary: Update Topic
+      description: Update topic by id
+      operationId: putTopic
+      parameters:
+        -   name: identifier
+            in: path
+            description: Topic identifier
+            required: true
+            style: simple
+            explode: false
+            schema:
+              type: string
+      requestBody:
+        description: admin info
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_topic_request_dto'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+    delete:
+      tags:
+        - Topic
+      summary: Delete Topic
+      description: Delete topic by id
+      operationId: deleteTopicById
+      parameters:
+        -   name: identifier
+            in: path
+            description: Topic identifier
+            required: true
+            style: simple
+            explode: false
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+components:
+  schemas:
+    general_response:
+      title: object of general response
+      required:
+        - code
+        - message
+      type: object
+      properties:
+        code:
+          type: string
+          description: Service return codigo.
+        message:
+          type: string
+          description: Description of the result of the operation performed
+    error:
+      title: Error en la aplicacion
+      required:
+        - code
+        - message
+        - request_id
+      type: object
+      properties:
+        code:
+          type: string
+          description: Codigo del resultado erroneo
+        message:
+          type: string
+          description: Descripcion del resultado erroneo
+        request_id:
+          type: string
+          description: Codigo de peticion unico.
+        details:
+          type: object
+          properties: { }
+          description: objeto con el detalle adicional de errores que desee aportar
+    error_response:
+      title: Error en la aplicacion encapsulado
+      required:
+        - error
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/error'
+    topic_response_dto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 13214
+        name:
+          type: string
+          example: 'Fruteria'
+        description:
+          type: string
+          example: 'Fruteria de XXX'
+        publish_name:
+          type: string
+          example: 'MERCADO/XXX/FRUTERIA'
+        destinations:
+          $ref: '#/components/schemas/destination'
+        created_date:
+          type: string
+        modificatied_date:
+          type: string
+        deleted_date:
+          type: string
+    topic_request_dto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Fruteria'
+        description:
+          type: string
+          example: 'Fruteria de XXX'
+        destination:
+          $ref: '#/components/schemas/destination'
+    update_topic_request_dto:
+      type: object
+      properties:
+        name:
+          type: string
+          example: 'Fruteria'
+        description:
+          type: string
+          example: 'Fruteria de XXX'
+        destination:
+          $ref: '#/components/schemas/destination'
+    destination:
+      type: object
+      properties:
+        company:
+          type: string
+          example: 'MERCADO'
+        area:
+          type: string
+          example: 'XXX'
+        store:
+          type: string
+          example: 'store ID'
+    error_dto:
+      title: DTO Error
+      type: object
+      properties:
+        message:
+          type: string
+        request_id:
+          type: string
+        details:
+          type: string
+        code:
+          type: string
+  responses:
+    '200':
+      description: successful operation
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/general_response'
+    '400':
+      description: There was something wrong in the request and therefore could not be processed (headers, json syntax/content)
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/error_response'
+    '404':
+      description: The server can not find the requested
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/error_response'
+    '500':
+      description: Unknown Internal server error
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/error_response'
+    '501':
+      description: The request was not completed. The server did not support the functionality required
+      content:
+        '*/*':
+          schema:
+            $ref: '#/components/schemas/error_response'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
