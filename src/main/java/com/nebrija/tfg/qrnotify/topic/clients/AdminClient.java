@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "qrnotify-admin", url = "http://localhost:8081" , configuration = FeignClientConfiguration.class)
+@FeignClient(name = "qrnotify-admin", url = "${qrnotify.feign.admin}" , configuration = FeignClientConfiguration.class)
 public interface AdminClient {
 
-    @GetMapping("/nebrija/qrnotify-admin/user")
+    @GetMapping("/user")
     List<AdminResponseDTO> getAdmin();
 
 }

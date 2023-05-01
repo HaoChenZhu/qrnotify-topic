@@ -16,5 +16,4 @@ public interface TopicService {
     ApiTopicResponseDto updateTopic(String identifier, ApiUpdateTopicRequestDto apiTopicRequestDto);
 
     ApiTopicResponseDto deleteTopic(String identifier);
-
 }

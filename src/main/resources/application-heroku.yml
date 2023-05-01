@@ -12,3 +12,6 @@ okta:
     client-id: 0oa9aooq57mOsWVPZ5d7
     client-secret: WLZOlqHkVaGfcqr8exLBGuydvrskAQcrH2az9R6s
     scope: hao
+qrnotify:
+  feign:
+    admin: https://qrnotify-admin.herokuapp.com/nebrija/qrnotify-admin

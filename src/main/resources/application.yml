@@ -15,3 +15,6 @@ okta:
 logging:
   level:
     feign: DEBUG
+qrnotify:
+  feign:
+    admin: http://localhost:8081/nebrija/qrnotify-admin/

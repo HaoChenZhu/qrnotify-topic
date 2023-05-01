@@ -10,7 +10,6 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import feign.Logger;
 
 @Configuration
-
 public class FeignClientConfiguration {
 
     @Value("${okta.oauth2.issuer}")
