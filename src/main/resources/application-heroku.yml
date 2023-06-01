@@ -1,17 +1,14 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://user:user@cluster0.gw7id.mongodb.net/qrnotify?retryWrites=true&w=majority
+      uri: ${MONGODB_URL}
 server:
   port: 8080
 chen:
   base_path: /nebrija/qrnotify-topic
 okta:
   oauth2:
-    issuer: https://dev-86838266.okta.com/oauth2/default
-    client-id: 0oa9aooq57mOsWVPZ5d7
-    client-secret: WLZOlqHkVaGfcqr8exLBGuydvrskAQcrH2az9R6s
+    issuer: ${OKTA_DOMAIN}
+    client-id: ${OKTA_CLIENT_ID}
+    client-secret: ${OKTA_CLIENT_SECRET}
     scope: hao
-qrnotify:
-  feign:
-    admin: https://qrnotify-admin.herokuapp.com/nebrija/qrnotify-admin

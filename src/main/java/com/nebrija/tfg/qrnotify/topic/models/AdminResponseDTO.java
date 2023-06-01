@@ -16,7 +16,7 @@ public class AdminResponseDTO {
     @JsonProperty("created_date")
     private String createdDate;
 
-    @JsonProperty("modificatied_date")
+    @JsonProperty("modificated_date")
     private String modificatiedDate;
 
     @JsonProperty("deleted_date")

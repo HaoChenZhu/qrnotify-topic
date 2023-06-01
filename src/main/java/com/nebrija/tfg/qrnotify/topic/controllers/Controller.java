@@ -24,8 +24,6 @@ import java.util.List;
 @RequestMapping(value = "${chen.base_path}")
 @Slf4j
 public class Controller implements TopicApi {
-    @Autowired
-    private AdminClient adminClient;
 
     @Autowired
     private TopicService topicService;
