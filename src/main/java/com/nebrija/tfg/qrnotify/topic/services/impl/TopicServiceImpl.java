@@ -7,11 +7,11 @@ import com.nebrija.tfg.qrnotify.topic.model.api.ApiDestination;
 import com.nebrija.tfg.qrnotify.topic.model.api.ApiTopicRequestDto;
 import com.nebrija.tfg.qrnotify.topic.model.api.ApiTopicResponseDto;
 import com.nebrija.tfg.qrnotify.topic.model.api.ApiUpdateTopicRequestDto;
+import com.nebrija.tfg.qrnotify.topic.services.AuthUserService;
 import com.nebrija.tfg.qrnotify.topic.services.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import static com.nebrija.tfg.qrnotify.topic.constants.Constants.*;
 
 import java.util.List;
@@ -25,6 +25,9 @@ public class TopicServiceImpl implements TopicService {
 
     @Autowired
     private TopicRepository topicRepository;
+
+    @Autowired
+    private AuthUserService authUserService;
 
     @Override
     public List<ApiTopicResponseDto> getAllTopics() {
@@ -40,10 +43,16 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public ApiTopicResponseDto createTopic(ApiTopicRequestDto apiTopicRequestDto) {
+        String owner = authUserService.getCurrentUser();
+        Topic existsTopic= topicRepository.findByOwner(owner);
+        if(existsTopic!=null){
+            return null;
+        }
         Topic topic = topicMapper.toEntity(apiTopicRequestDto);
         String publishName = buildQRNOTIFYTopic(apiTopicRequestDto.getDestination());
         topic.setPublishName(publishName);
         topic.setDestination(topicMapper.map(apiTopicRequestDto.getDestination()));
+        topic.setOwner(authUserService.getCurrentUser());
         topicRepository.save(topic);
         return topicMapper.toDto(topic);
     }
@@ -66,6 +75,15 @@ public class TopicServiceImpl implements TopicService {
         Topic topic = topicRepository.findBy_id(identifier);
         if (topic == null) return null;
         topicRepository.deleteBy_id(identifier);
+        return null;
+    }
+
+    @Override
+    public ApiTopicResponseDto getTopicByOwner(String owner) {
+        Topic topic = topicRepository.findByOwner(owner);
+        if (topic != null) {
+            return topicMapper.toDto(topic);
+        }
         return null;
     }
 

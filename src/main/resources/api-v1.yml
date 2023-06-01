@@ -322,6 +322,60 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error_dto'
+  /topic/owner/{name}:
+    get:
+      tags:
+        - Topic
+      summary: Get topic by owner
+      description: Get topic by owner
+      operationId: getTopicByOwner
+      parameters:
+        -   name: name
+            in: path
+            description: Topic owner
+            required: true
+            style: simple
+            explode: false
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/topic_response_dto'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '405':
+          description: Method call not allowed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '500':
+          description: Internal Server Error QRNotify
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+        '503':
+          description: Internal QRNotify storage system error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_dto'
+
 components:
   schemas:
     general_response:
@@ -383,11 +437,16 @@ components:
           example: 'MERCADO/XXX/FRUTERIA'
         destinations:
           $ref: '#/components/schemas/destination'
+        owner:
+          type: string
+          example: 'admin'
         created_date:
           type: string
-        modificatied_date:
+        modificated_date:
           type: string
         deleted_date:
+          type: string
+        created_by:
           type: string
     topic_request_dto:
       type: object

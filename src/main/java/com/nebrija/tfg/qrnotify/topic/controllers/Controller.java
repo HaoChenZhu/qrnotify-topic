@@ -7,12 +7,15 @@ import com.nebrija.tfg.qrnotify.topic.model.api.ApiTopicResponseDto;
 import com.nebrija.tfg.qrnotify.topic.model.api.ApiUpdateTopicRequestDto;
 import com.nebrija.tfg.qrnotify.topic.models.AdminResponseDTO;
 import com.nebrija.tfg.qrnotify.topic.services.TopicService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -27,12 +30,13 @@ public class Controller implements TopicApi {
     @Autowired
     private TopicService topicService;
 
-    @GetMapping("/user")
-    public ResponseEntity<List<AdminResponseDTO>> getAdmin() {
-        return new ResponseEntity<>(adminClient.getAdmin(), HttpStatus.OK);
+    @Override
+    public ResponseEntity<ApiTopicResponseDto> getTopicByOwner(@ApiParam(value = "Topic owner",required=true) @PathVariable("name") String name) {
+        ApiTopicResponseDto topic = topicService.getTopicByOwner(name);
+        return new ResponseEntity<>(topic,HttpStatus.OK);
     }
 
-    @Override
+        @Override
     public ResponseEntity<ApiTopicResponseDto> deleteTopicById(@ApiParam(value = "Topic identifier", required = true) @PathVariable("identifier") String identifier) {
         ApiTopicResponseDto topic = topicService.deleteTopic(identifier);
         return new ResponseEntity<>(topic,HttpStatus.OK);

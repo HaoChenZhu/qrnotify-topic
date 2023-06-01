@@ -16,4 +16,6 @@ public interface TopicRepository {
 
     void deleteBy_id(String _id);
 
+    Topic findByOwner(String owner);
+
 }

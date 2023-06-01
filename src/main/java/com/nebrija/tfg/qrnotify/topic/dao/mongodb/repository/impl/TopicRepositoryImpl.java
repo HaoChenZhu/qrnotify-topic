@@ -43,5 +43,11 @@ public class TopicRepositoryImpl implements TopicRepository {
         mongoTemplate.remove(query, Topic.class);
     }
 
+    @Override
+    public Topic findByOwner(String owner) {
+        Topic topic = mongoTemplate.findOne(Query.query(Criteria.where("owner").is(owner)), Topic.class);
+        return topic;
+    }
+
 
 }

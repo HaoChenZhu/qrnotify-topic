@@ -21,10 +21,6 @@ public class FeignClientConfiguration {
     @Value("${okta.oauth2.client-secret}")
     private String clientSecret;
 
-    /*
-        @Value("${api.client.token.grant-type:client_credentials}")
-        private String apiClientTokenGrantType;
-        */
     @Bean
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;

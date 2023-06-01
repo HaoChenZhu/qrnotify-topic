@@ -25,6 +25,9 @@ public class Topic extends AuditableEntityListener {
     @Field("publish_name")
     private String publishName;
 
+    @Field("owner")
+    private String owner;
+
     @Field("destination")
     private Destination destination;
 
