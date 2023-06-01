@@ -9,7 +9,6 @@ import com.nebrija.tfg.qrnotify.topic.model.api.ApiTopicResponseDto;
 import org.bson.types.ObjectId;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.Mappings;
 
 import java.util.List;
 

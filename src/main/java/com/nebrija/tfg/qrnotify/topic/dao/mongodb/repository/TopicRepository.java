@@ -1,7 +1,6 @@
 package com.nebrija.tfg.qrnotify.topic.dao.mongodb.repository;
 
 
-
 import com.nebrija.tfg.qrnotify.topic.dao.mongodb.entities.Topic;
 
 import java.util.List;

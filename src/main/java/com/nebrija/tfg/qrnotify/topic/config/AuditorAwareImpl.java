@@ -7,10 +7,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import java.util.Optional;
 
 public class AuditorAwareImpl implements AuditorAware<String> {
-    /*@Override
-    public Optional<String> getCurrentAuditor() {
-        return Optional.of("HaoChenZhu");
-    }*/
     @Override
     public Optional<String> getCurrentAuditor() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -12,6 +12,7 @@ import com.nebrija.tfg.qrnotify.topic.services.TopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import static com.nebrija.tfg.qrnotify.topic.constants.Constants.*;
 
 import java.util.List;
@@ -44,8 +45,8 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public ApiTopicResponseDto createTopic(ApiTopicRequestDto apiTopicRequestDto) {
         String owner = authUserService.getCurrentUser();
-        Topic existsTopic= topicRepository.findByOwner(owner);
-        if(existsTopic!=null){
+        Topic existsTopic = topicRepository.findByOwner(owner);
+        if (existsTopic != null) {
             return null;
         }
         Topic topic = topicMapper.toEntity(apiTopicRequestDto);
